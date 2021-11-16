@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="m-t-15"> Customer management </h2>
+
+@Html.Partial("Components/_List_Customers", Model)

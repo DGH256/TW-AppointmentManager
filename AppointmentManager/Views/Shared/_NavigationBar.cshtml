@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "NavigationBar";
+    string userName = Service_Users.GetUserNickname(User);
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="max-width-95 margin-auto">
+        <div class="navbar-header text-align-center">
+            <button type="button" class="navbar-toggle float-middle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+           
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav text-align-center">
+            </ul>
+            
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <ul class="nav navbar-nav navbar-right text-align-center">
+                        <li><i class="fa fa-pie-chart"></i>     @Html.ActionLink("Home", "Index", "Home")</li>
+
+                        @if (User.HasPermission(AuthOptions.Permissions.ViewCalendarPage))
+                        {
+                        <li><i class="fa fa-calendar"></i>@Html.ActionLink("Calendar", "Index", "Calendar")</li>
+                        }
+
+                        @if (User.HasPermission(AuthOptions.Permissions.ViewCustomersPage))
+                        {
+                        <li><i class="fa fa-id-card"></i>   @Html.ActionLink("Customers", "Index", "Customer")</li>
+                        }
+
+                        @if (User.HasPermission(AuthOptions.Permissions.ViewUsersPage))
+                        {
+                        <li><i class="fa fa-users"></i>   @Html.ActionLink("Users", "Index", "UserManagement")</li>
+                        }
+
+                        <li><i class="fa fa-cog"></i>@Html.ActionLink("Settings - " + userName, "PersonalSettings", "Home")</li>
+                    </ul>
+                }
+            }
+            else
+            {
+                <ul class="nav navbar-nav navbar-right text-align-center">
+                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    <li><i class="fa fa-sign-in"></i>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                </ul>
+            }
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .navbar
+    {
+        background-color:#429a82;
+        border:none;
+    }
+
+    .navbar-nav li 
+    {
+        padding-left:10px;
+    }
+
+    .navbar-nav li:hover
+    {
+        background-color:#3b836f;
+    }
+
+    .navbar-nav li a
+    {
+        display:inline-block!important;
+        padding-left:5px;
+        color:white !important;
+    }
+
+    .navbar-collapse 
+    {
+        border-color:#3b836f !important;
+    }
+
+    .navbar-toggle:hover, .navbar-toggle:focus
+    {
+        background-color:#3c7c6b !important;
+    }
+
+</style>

@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Calendar";
+}
+
+@*<h2 class="m-t-15 m-b-15" >Appointment Calendar</h2>*@
+
+<div class="scheduler_container m-t-20">
+    @Html.Raw(Model.Render())
+
+    <div class="row row-exports">
+        <div class="col-lg-4 col-lg-offset-8">
+            <input type="button" class="btn btn-info m-t-10 float-r m-l-10" value="Export to CSV" onclick="location.href='@Url.Action("DownloadCSV", "Calendar")'" />
+            <input type="button" class="btn btn-warning m-t-10 float-r m-l-10" value="Export to Json" onclick="location.href='@Url.Action("DownloadJSON", "Calendar")'" />
+        </div>
+    </div>
+</div>
+
+<div class="m-t-25 row"></div>
+
+
+<link href="~/Content/Calendar_Appointments.css" rel="stylesheet" />
+
+<script>
+scheduler.attachEvent("onClick",function(event_id,e){
+scheduler._on_dbl_click(e||event);
+return false;
+})
+
+scheduler.attachEvent("onLightbox", function (id) {
+    $(".dhx_cal_ltext textarea").css("max-height", "200px");
+});
+</script>

@@ -1,0 +1,11 @@
+﻿@model List<AspNetUser>
+
+@{
+    ViewBag.Title = "User management";
+}
+
+
+<h2 class="m-t-15 m-b-15">User management</h2>
+
+@Html.Partial("Components/_List_Users", Model)
+

@@ -1,0 +1,12 @@
+﻿.scheduler_container{
+    width:100%;
+    height:626px;
+    border:1px solid #aeaeae;
+}
+
+.dhx_cal_lsection
+{
+    text-align:center !important;
+    float:none;
+    vertical-align:middle !important;
+}

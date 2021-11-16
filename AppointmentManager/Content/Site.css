@@ -1,0 +1,133 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 90%;
+    margin:auto;
+}*/
+
+.fa
+{
+    color:#ecf4f7;
+}
+.container
+{
+    max-width:90% !important;
+}
+
+.hidden-element
+{
+    display:none !important;
+}
+.navbar-collapse .navbar-nav.navbar-right:last-child
+{
+    margin-right:-35px;
+}
+.margin-left-20
+{
+    margin-left:20px;
+}
+.margin-left-30
+{
+    margin-left:30px;
+}
+.margin-left-40
+{
+    margin-left:40px;
+}
+.fill-width
+{
+    width:100%;
+}
+
+.form-control, .btn
+{
+    border:1px solid #cccccc !important;
+}
+
+.multi-line
+{
+    word-break : break-word !important;
+}
+
+.multiselect-element[disabled]
+{
+    color:red;
+}
+
+/* Modal dialog CSS */
+.header-green
+{
+    background-color:#429a82;
+    color:#f5f5f5;
+}
+
+.button-close-modal
+{
+    margin-top:-7px;
+}
+
+.button-close-modal > span
+{
+    font-size:22px; 
+    color:#f5f5f5; 
+    opacity:0.9 !important;
+    font-weight:bold;
+}
+
+.modal-centered
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  overflow-y:hidden;
+}
+
+.modal-input
+{
+    background-color:#f6f6f6;
+    font-size:16px;
+    width:95%;
+    max-width:95%;
+    margin:auto;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+.dropdown-menu
+{
+    min-width:180px;
+    position:absolute;
+    overflow:visible !important;
+    z-index:1000;
+    top:auto;
+   
+}
+
+
+.navbar-collapse
+{
+    overflow-x:hidden;
+}
+
