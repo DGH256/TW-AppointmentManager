@@ -1,8 +1,8 @@
 <h2>
-Student: Galbenu Dorin, IA, an III, subgrupa 2
+Student: Galbenu Dorin, IA, an III, subgrupa 2 <br/>
 Subiect: Web based Appointment Systems
 </h2>
-
+<br/>
 <h2> Documentatia se poate gasi in folder-ul AppointmentManager/_Documentatie </h2>
 
 ![GalbenuDorin_ET2_TW-1](https://user-images.githubusercontent.com/91731551/142015394-e340d500-83f0-48f2-b0c6-077cdd333238.jpg)
