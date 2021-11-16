@@ -565,6 +565,8 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Shared\Components\_List_Customers.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="_Documentatie\GalbenuDorin_ET1_TW.pdf" />
+    <Content Include="_Documentatie\GalbenuDorin_ET2_TW.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
