@@ -1,8 +1,10 @@
 <h3>
-  <p> Student: Galbenu Dorin, IA, an III, subgrupa 2 </p> <br/>
+  <p> Student: Galbenu Dorin, IA, an III, subgrupa 2 </p> 
   <p> Subiect: Web based Appointment Systems </p>
 </h3>
+
 <h3> <p> Documentatia se poate gasi in folder-ul AppointmentManager/_Documentatie </p> </h3>
+<hr/>
 
 ![GalbenuDorin_ET2_TW-1](https://user-images.githubusercontent.com/91731551/142015394-e340d500-83f0-48f2-b0c6-077cdd333238.jpg)
 ![GalbenuDorin_ET2_TW-2](https://user-images.githubusercontent.com/91731551/142015401-7f225b14-7adb-4f04-902e-7b180dd2a138.jpg)
