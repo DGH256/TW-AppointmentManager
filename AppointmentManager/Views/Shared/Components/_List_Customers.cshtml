@@ -5,77 +5,77 @@
 }
 
 
-<input type="button" class="btn btn-success m-b-10 m-t-10" data-toggle="modal" data-target="#modal-add-customer" value="Add customer" />
+<input type="button" class="btn btn-success m-b-10 m-t-10"  data-toggle="modal" data-target="#modal-add-customer" value="Add customer"/> 
 
 
 <div class="modal fade modal-dialog-window" id="modal-add-customer" tabindex="-1" role="dialog" aria-labelledby="modal-add-customerLabel" aria-hidden="true">
-    <div class="modal-dialog modal-centered fixed-width-650 max-width-90" role="document">
+    <div class="modal-dialog modal-centered fixed-width-650 max-width-90"  role="document">
         <div class="modal-content">
             <div class="modal-header header-green">
-                <h4 class="max-width-60 dis-inline-block">Add new customer</h4>
+                <h4 class="max-width-60 dis-inline-block" >Add new customer</h4>
                 <button type="button" class="button-close-modal float-r" data-dismiss="modal" aria-label="Close">
                     <span>X</span>
                 </button>
             </div>
-            @using (Html.BeginForm("AddCustomer", "Customer", FormMethod.Post, null))
-            {
-                <div class="modal-body">
-
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Name </label></div>
-                                <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="Name" type="text" value="" /></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Email </label></div>
-                                <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="Email" type="text" value="" /></div>
-                            </div>
+@using (Html.BeginForm("AddCustomer", "Customer", FormMethod.Post, null))
+{
+            <div class="modal-body">
+                
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Name </label></div>
+                            <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="Name" type="text" value="" /></div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Address </label></div>
-                                <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="Address" type="text" value="" /></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Phone </label></div>
-                                <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="PhoneNumber" type="text" value="" /></div>
-                            </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Email </label></div>
+                            <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="Email" type="text" value="" /></div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Govt.ID </label></div>
-                                <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="GovernmentID" type="text" value="" /></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Details </label></div>
-                                <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="Details" type="text" value="" /></div>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
-                <div class="modal-footer m-t-0 p-t-10 p-b-10">
-                    @*<button type="button" class="btn btn-secondary m-r-30" data-dismiss="modal">Close</button>*@
-                    <button type="submit" class="btn btn-success btn-close-modal">Submit changes</button>
+
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Address </label></div>
+                            <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="Address" type="text" value="" /></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Phone </label></div>
+                            <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="PhoneNumber" type="text" value="" /></div>
+                        </div>
+                    </div>
                 </div>
-            }
+
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Govt.ID </label></div>
+                            <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="GovernmentID" type="text" value="" /></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-2 col-xs-2 text-center"><label> Details </label></div>
+                            <div class="col-lg-10 col-sm-10 col-xs-10"><input class="modal-input" name="Details" type="text" value="" /></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer m-t-0 p-t-10 p-b-10">
+                @*<button type="button" class="btn btn-secondary m-r-30" data-dismiss="modal">Close</button>*@
+                <button type="submit" class="btn btn-success btn-close-modal" >Submit changes</button>
+            </div>
+}
         </div>
     </div>
 </div>
@@ -85,7 +85,7 @@
     <div class="container-responsiveTable">
         <div class="wrap-responsiveTable">
             <div class="responsiveTable">
-                <table class="sortable responsiveTable text-align-center">
+                <table class="sortable text-align-center">
                     <thead>
                         <tr class="responsiveTable-head">
                             <th class="p-l-20 width-15">Name</th>
@@ -94,10 +94,10 @@
                             <th class="width-10">Phone</th>
                             <th class="width-10">Govt. ID</th>
                             <th class="width-10">Details</th>
-
+                            
                             @if (User.HasPermission(AuthOptions.Permissions.EditCustomerInfo))
                             {
-                                <th class="width-15">Operations</th>
+                            <th class="width-15">Operations</th>
                             }
                         </tr>
                     </thead>
@@ -107,9 +107,7 @@
                             <tr>
                                 @using (Ajax.BeginForm("UpdateCustomer", "Customer", FormMethod.Post, null))
                                 {
-                                    <td class="hidden">
-                                        <input type="text" class="hidden" readonly name="Id" value="@customer.Id" />
-                                    </td>
+                                    <input type="text" class="hidden" readonly name="Id" value="@customer.Id" />
                                     <td class="">
                                         <div class="before-element">Name</div>
                                         <input type="text" class="table-input editable " readonly name="Name" value="@customer.Name" />
@@ -137,14 +135,14 @@
 
                                     if (User.HasPermission(AuthOptions.Permissions.EditCustomerInfo))
                                     {
-                                        <td class="">
-                                            <div class="before-element">Operations</div>
-                                            <input type="button" class="btn btn-warning btn-action btn-action-edit" value="Edit" />
-                                            <input type="submit" class="btn btn-success btn-action btn-action-save hidden" value="Save changes" />
-                                            <input type="submit" class="btn btn-danger btn-action btn-action-delete m-l-5" methodUrl="@Url.Action("DeleteCustomer", "Customer")" methodId="@customer.Id" value="Delete" />
-                                        </td>
+                                    <td class="">
+                                        <div class="before-element">Operations</div>
+                                        <input type="button" class="btn btn-warning btn-action btn-action-edit" value="Edit" />
+                                        <input type="submit" class="btn btn-success btn-action btn-action-save hidden" value="Save changes" />
+                                        <input type="submit" class="btn btn-danger btn-action btn-action-delete m-l-5" methodUrl="@Url.Action("DeleteCustomer", "Customer")" methodId="@customer.Id" value="Delete" />
+                                    </td>
                                     }
-                                }
+                                 }
                             </tr>
                         }
                     </tbody>
@@ -156,7 +154,7 @@
 
 <div class="row row-exports">
     <div class="col-lg-4 col-lg-offset-8">
-        <input type="button" class="btn btn-info m-t-10 float-r m-l-10" value="Export to CSV" onclick="location.href='@Url.Action("DownloadCSV", "Customer")'" />
+        <input type="button"  class="btn btn-info m-t-10 float-r m-l-10"  value="Export to CSV" onclick="location.href='@Url.Action("DownloadCSV", "Customer")'" />
         <input type="button" class="btn btn-warning m-t-10 float-r m-l-10" value="Export to Json" onclick="location.href='@Url.Action("DownloadJSON", "Customer")'" />
     </div>
 </div>

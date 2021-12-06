@@ -29,7 +29,7 @@ namespace AppointmentManager.Controllers
         {     
             Service_Users.SetPersonalSettings(User, settings);
 
-            return RedirectToAction("PersonalSettings","Home");
+            return RedirectToAction("PersonalSettings");
         }
 
         [HttpPost]

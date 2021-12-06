@@ -2,55 +2,9 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
-
-    string modal_label_width = "col-md-3 col-sm-4 col-xs-5";
-    string modal_input_width = "col-md-9 col-sm-8 col-xs-7";
-
-    string modal_label_css = "text-align:right;";
 }
 
-@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <div class="form-wrapper ">
-        <div class="modal-content modal-centered fixed-width-650 max-width-90">
-            <div class="modal-header header-green">
-                <h4 class="max-width-60 dis-inline-block">Login form</h4>
-            </div>
-
-            <div class="modal-body">
-
-                <div class="row">
-                    <div class="@modal_label_width" style="@modal_label_css"><label> Email/Username </label></div>
-                    <div class="@modal_input_width"> <input class="modal-input" name="Email" type="text" value="" /></div>
-                </div>
-
-                <div class="row">
-                    <div class="@modal_label_width" style="@modal_label_css"><label> Password </label></div>
-                    <div class="@modal_input_width"> <input class="modal-input" name="Password" type="password" value="" /></div>
-                </div>
-
-            </div>
-
-            <div class="modal-footer m-t-0 p-t-10 p-b-10 ">
-
-                <div class="col-md-4 col-md-offset-8 col-xs-12">
-                    <button type="submit" class="btn btn-primary fill-width btn-close-modal">Login</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-}
-
-<link href="~/Content/responsive-table.css" rel="stylesheet" />
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
-
-@*<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title.</h2>
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
@@ -87,8 +41,23 @@
                         <input type="submit" value="Log in" class="btn btn-default" />
                     </div>
                 </div>
+                @*<p>
+                    @Html.ActionLink("Register as a new user", "Register")
+                </p>*@
+                @* Enable this once you have account confirmation enabled for password reset functionality
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </p>*@
             }
         </section>
     </div>
-</div>*@
+    @*<div class="col-md-4">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>*@
+</div>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $(".btn-action-edit").unbind("click").click(function () {
+    $(".btn-action-edit").click(function () {
         $(this).hide();
         var parentForm = $(this).parent().parent();
         parentForm.find(".table-input.editable").prop('readonly', false);
@@ -7,7 +7,7 @@
         parentForm.find(".multiselect").removeClass("disabled").prop("disabled", false);
     });
 
-    $(".btn-action-save").unbind("click").click(function () {
+    $(".btn-action-save").click(function () {
         $(".btn-action-edit").show();
         var parentForm = $(this).parent().parent();
         parentForm.find(".table-input.editable").prop('readonly', true);
@@ -15,7 +15,7 @@
         $(this).addClass("hidden");
     });
 
-    $(".btn-action-delete").unbind("click").click(function () {
+    $(".btn-action-delete").click(function () {
 
         if (confirm("Are you sure you want to delete this item?")) {
             var parentForm = $(this).parent().parent();
@@ -29,20 +29,6 @@
             });
 
             parentForm.remove();
-        }
-    });
-
-    $(".btn-action-delete-ajax").unbind("click").click(function () {
-
-        if (confirm("Are you sure you want to delete this item?")) {
-            var methodUrl = $(this).attr("methodUrl");
-            var methodId = $(this).attr("methodId");
-
-            $.ajax({
-                url: methodUrl,
-                type: 'POST',
-                data: $.param({ id: methodId })
-            });
         }
     });
 

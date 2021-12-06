@@ -18,11 +18,6 @@ namespace AppointmentManager.Controllers
     {
         private dbContext db = new dbContext();
 
-        public ActionResult Booking()
-        {
-            return View();
-        }
-
         public ActionResult Index()
         {
             var scheduler = new DHXScheduler(this);

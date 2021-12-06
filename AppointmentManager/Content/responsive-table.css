@@ -86,6 +86,13 @@ iframe {
 
 
 
+/*//////////////////////////////////////////////////////////////////
+[ Utiliti ]*/
+
+
+
+
+
 
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
@@ -95,8 +102,31 @@ iframe {
   margin: 0 auto;
 }
 
+.container-table100 {
+  width: 100%;
+  min-height: 100vh;
+  background: #c850c0;
+  background: -webkit-linear-gradient(45deg, #4158d0, #c850c0);
+  background: -o-linear-gradient(45deg, #4158d0, #c850c0);
+  background: -moz-linear-gradient(45deg, #4158d0, #c850c0);
+  background: linear-gradient(45deg, #4158d0, #c850c0);
 
-div.responsiveTable {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 33px 30px;
+}
+
+.wrap-table100 {
+  width: 1170px;
+}
+
+table {
   border-spacing: 1;
   border-collapse: collapse;
   background: white;
@@ -106,37 +136,35 @@ div.responsiveTable {
   margin: 0 auto;
   position: relative;
 }
-div.responsiveTable * {
+table * {
   position: relative;
 }
-div.responsiveTable td, table.responsiveTable th {
+table td, table th {
   padding-left: 8px;
 }
-div.responsiveTable thead tr {
+table thead tr {
   height: 60px;
   background: #429a82;
 }
-
-div.responsiveTable tbody tr:last-child {
+table tbody tr {
+  height: 50px;
+}
+table tbody tr:last-child {
   border: 0;
 }
-div.responsiveTable td, table th {
-  text-align: center;
+table td, table th {
+  text-align: left;
 }
-div.responsiveTable td.l, table th.l {
+table td.l, table th.l {
   text-align: right;
 }
-div.responsiveTable td.c, table th.c {
+table td.c, table th.c {
   text-align: center;
 }
-div.responsiveTable td.r, table th.r {
+table td.r, table th.r {
   text-align: center;
 }
 
-table.responsiveTable
-{
-    margin:auto;
-}
 
 .table100-head th{
   font-family: OpenSans-Regular;
@@ -150,7 +178,7 @@ tbody tr:nth-child(even) {
   background-color: #f5f5f5;
 }
 
-div.responsiveTable tbody tr {
+tbody tr {
   font-family: OpenSans-Regular;
   font-size: 15px;
   color: #808080;
@@ -158,12 +186,7 @@ div.responsiveTable tbody tr {
   font-weight: unset;
 }
 
-div.responsiveTable tbody tr td
-{
-    height:45px ;
-}
-
-.responsiveTable tbody tr:hover {
+tbody tr:hover {
   color: #555555;
   background-color: #f5f5f5;
   cursor: pointer;
@@ -231,6 +254,25 @@ div.responsiveTable tbody tr td
     left: 30px;
     top: 0;
   }
+
+  /*table tbody tr td:nth-child(1):before {
+    content: "Date";
+  }
+  table tbody tr td:nth-child(2):before {
+    content: "Order ID";
+  }
+  table tbody tr td:nth-child(3):before {
+    content: "Name";
+  }
+  table tbody tr td:nth-child(4):before {
+    content: "Price";
+  }
+  table tbody tr td:nth-child(5):before {
+    content: "Quantity";
+  }
+  table tbody tr td:nth-child(6):before {
+    content: "Total";
+  }*/
 
   .column4,
   .column5,
@@ -328,7 +370,7 @@ div.responsiveTable tbody tr td
         color: #999999;
         line-height: 1.2;
         font-weight: unset;
-        position: absolute !important;
+        position: absolute;
         width: 40%;
         left: 30px;
         display: inline-block;

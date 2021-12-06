@@ -25,29 +25,12 @@
                     @Html.AntiForgeryToken()
 
                     <ul class="nav navbar-nav navbar-right text-align-center">
-                        @*<li><i class="fa fa-pie-chart"></i>     @Html.ActionLink("Home", "Index", "Home")</li>*@
-
-
-                        @*@if (User.HasPermission(AuthOptions.Permissions.ViewCalendarPage))
-                        {
-                            <li><i class="fa fa-calendar-check-o"></i>@Html.ActionLink("Events", "Events", "Booking")</li>
-                        }
-
-                        @if (User.HasPermission(AuthOptions.Permissions.ViewCalendarPage))
-                        {
-                            <li><i class="fa fa-calendar-check-o"></i>@Html.ActionLink("Rooms", "Rooms", "Booking")</li>
-                        }*@
-
-                        @if (User.HasPermission(AuthOptions.Permissions.ViewCalendarPage))
-                        {
-                            <li><i class="fa fa-calendar-check-o"></i>@Html.ActionLink("Booking", "Index", "Booking")</li>
-                        }
+                        <li><i class="fa fa-pie-chart"></i>     @Html.ActionLink("Home", "Index", "Home")</li>
 
                         @if (User.HasPermission(AuthOptions.Permissions.ViewCalendarPage))
                         {
                         <li><i class="fa fa-calendar"></i>@Html.ActionLink("Calendar", "Index", "Calendar")</li>
                         }
-
 
                         @if (User.HasPermission(AuthOptions.Permissions.ViewCustomersPage))
                         {
