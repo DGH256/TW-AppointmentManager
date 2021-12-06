@@ -74,6 +74,42 @@ namespace AppointmentManager
             return content;
         }
 
+        public static string Export_Rooms_CSV()
+        {
+            var items = Service_Bookings.GetRooms();
+
+            var content = items.ExportCsv().ToString();
+
+            return content;
+        }
+
+        public static string Export_Rooms_JSON()
+        {
+            var items = Service_Bookings.GetRooms();
+
+            var content = items.JsonSerialize();
+
+            return content;
+        }
+
+        public static string Export_Events_CSV()
+        {
+            var items = Service_Bookings.GetEvents();
+
+            var content = items.ExportCsv().ToString();
+
+            return content;
+        }
+
+        public static string Export_Events_JSON()
+        {
+            var items = Service_Bookings.GetEvents();
+
+            var content = items.JsonSerialize();
+
+            return content;
+        }
+
         private static StringBuilder ExportCsv<T>(this List<T> genericList, string separator="; ")
         {
             var sb = new StringBuilder();

@@ -11,7 +11,7 @@
     <div class="container-responsiveTable ">
         <div class="wrap-responsiveTable ">
             <div class="responsiveTable ">
-                <table class="sortable " style="overflow:visible;z-index:1;">
+                <table class="sortable responsiveTable" style="overflow:visible;z-index:1;">
                     <thead>
                         <tr class="responsiveTable-head">
                             <th class="p-l-20 width-15">User name</th>
@@ -24,76 +24,78 @@
 
                             @if (User.HasPermission(AuthOptions.Permissions.EditUserInfo))
                             {
-                            <th class="width-20">Operations</th>
+                                <th class="width-20">Operations</th>
                             }
 
                         </tr>
                     </thead>
                     <tbody>
-                      @foreach (var user in Model)
-                      {
-                        <tr>
-                            @using (Ajax.BeginForm("UpdateUserSettings", "UserManagement", FormMethod.Post, null))
-                            {
-                                <input type="text" class="hidden" readonly name="Id" value="@user.Id" />
-                                <td class="">
-                                    <div class="before-element">Username</div>
-                                    <input type="text" class="table-input " readonly name="UserName" value="@user.UserName" />
-                                </td>
-                                <td>
-                                    <div class="before-element">Email</div>
-                                    <input type="text" class="table-input" readonly name="Email" value="@user.Email" />
-                                </td>
-                                <td>
-                                    <div class="before-element">Nickname</div>
-                                    <input type="text" class="table-input editable" readonly name="Nickname" value="@user.Nickname" />
-                                </td>
-                                <td>
-                                    <div class="before-element">Details</div>
-                                    <input type="text" class="table-input editable" readonly name="Details" value="@user.Details" />
-                                </td>
-                                <td>
-                                    <div class="before-element">Address</div>
-                                    <input type="text" class="table-input editable" readonly name="Address" value="@user.Address" />
-                                </td>
-                                <td>
-                                    <div class="before-element">Phone</div>
-                                    <input type="text" class="table-input editable" readonly name="PhoneNumber" value="@user.PhoneNumber" />
-                                </td>
-
-                                <td>
-                                    <div class="rolesWrapper">
-                                        <div class="before-element">Roles</div>
-                                        <input type="text" class="hidden-element multiselect-hidden-input" name="roles" value="@user.Nickname">
-                                        <select class="multiselect-element select-roles" name="roles" multiple="multiple" disabled>
-                                            @foreach (var role in allRoles)
-                                            {
-                                                if (user.AspNetRoles.Where(p => p.Name == role.Name).Count() > 0)
-                                                {
-                                                    <option value="@role.Name" selected> @role.Name</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@role.Name"> @role.Name</option>
-                                                }
-
-                                            }
-                                        </select>
-                                    </div>
-                                </td>
-
-                                if (User.HasPermission(AuthOptions.Permissions.EditUserInfo))
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                @using (Ajax.BeginForm("UpdateUserSettings", "UserManagement", FormMethod.Post, null))
                                 {
-                                <td class="">
-                                    <div class="before-element">Operations</div>
-                                    <input type="button" class="btn btn-warning btn-action btn-action-edit" value="Edit" />
-                                    <input type="submit" class="btn btn-success btn-action btn-action-save hidden" value="Save changes" />
-                                    <input type="button" class="btn btn-danger  btn-action btn-action-delete m-l-5" methodUrl="@Url.Action("DeleteUser", "UserManagement")" methodId="@user.Id"  value="Delete" />
-                                </td>
+                                    <td class="hidden">
+                                        <input type="text" class="hidden" readonly name="Id" value="@user.Id" />
+                                    </td>
+                                    <td class="">
+                                        <div class="before-element">Username</div>
+                                        <input type="text" class="table-input " readonly name="UserName" value="@user.UserName" />
+                                    </td>
+                                    <td>
+                                        <div class="before-element">Email</div>
+                                        <input type="text" class="table-input" readonly name="Email" value="@user.Email" />
+                                    </td>
+                                    <td>
+                                        <div class="before-element">Nickname</div>
+                                        <input type="text" class="table-input editable" readonly name="Nickname" value="@user.Nickname" />
+                                    </td>
+                                    <td>
+                                        <div class="before-element">Details</div>
+                                        <input type="text" class="table-input editable" readonly name="Details" value="@user.Details" />
+                                    </td>
+                                    <td>
+                                        <div class="before-element">Address</div>
+                                        <input type="text" class="table-input editable" readonly name="Address" value="@user.Address" />
+                                    </td>
+                                    <td>
+                                        <div class="before-element">Phone</div>
+                                        <input type="text" class="table-input editable" readonly name="PhoneNumber" value="@user.PhoneNumber" />
+                                    </td>
+
+                                    <td>
+                                        <div class="rolesWrapper">
+                                            <div class="before-element">Roles</div>
+                                            <input type="text" class="hidden-element multiselect-hidden-input" name="roles" value="@user.Nickname">
+                                            <select class="multiselect-element select-roles" name="roles" multiple="multiple" disabled>
+                                                @foreach (var role in allRoles)
+                                                {
+                                                    if (user.AspNetRoles.Where(p => p.Name == role.Name).Count() > 0)
+                                                    {
+                                                        <option value="@role.Name" selected> @role.Name</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@role.Name"> @role.Name</option>
+                                                    }
+
+                                                }
+                                            </select>
+                                        </div>
+                                    </td>
+
+                                    if (User.HasPermission(AuthOptions.Permissions.EditUserInfo))
+                                    {
+                                        <td class="">
+                                            <div class="before-element">Operations</div>
+                                            <input type="button" class="btn btn-warning btn-action btn-action-edit" value="Edit" />
+                                            <input type="submit" class="btn btn-success btn-action btn-action-save hidden" value="Save changes" />
+                                            <input type="button" class="btn btn-danger  btn-action btn-action-delete m-l-5" methodUrl="@Url.Action("DeleteUser", "UserManagement")" methodId="@user.Id" value="Delete" />
+                                        </td>
+                                    }
                                 }
-                            }
-                        </tr>
-                      }              
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

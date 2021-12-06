@@ -18,6 +18,9 @@ namespace AppointmentManager
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<CalendarAppointment> CalendarAppointments { get; set; }
+        public virtual DbSet<Booking_Room> Booking_Rooms { get; set; }
+
+        public virtual DbSet<Booking_Event> Booking_Events { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
