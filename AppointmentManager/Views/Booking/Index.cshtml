@@ -1,0 +1,372 @@
+﻿@model AppointmentManager.Models.vm_Booking
+
+@{
+    ViewBag.Title = "Booking";
+    string default_label_class = "col-lg-3 col-sm-3 col-xs-3 text-center";
+    string default_input_class = "col-lg-9 col-sm-9 col-xs-9";
+
+    Booking_Event editEvent = new Booking_Event();
+
+
+}
+<!-- test -->
+<link href="~/Content/fullcalendar-main.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/fullcalendar/fullcalendar-main.js"></script>
+<script src="~/Scripts/dateformat.js"></script>
+<script src="~/Scripts/responsive-table.js"></script>
+
+<input type="button" class="btn btn-success m-b-10 m-t-10" data-toggle="modal" data-target="#modal-room-management" value="Room management" />
+<input type="button" class="btn btn-success m-b-10 m-t-10 m-l-25" data-toggle="modal" data-target="#modal-event-management" value="Event management" />
+
+
+<div class="modal fade modal-dialog-window" id="modal-room-management" tabindex="-1" role="dialog" aria-labelledby="modal-add-roomLabel" aria-hidden="true">
+    <div class="modal-dialog modal-centered fixed-width-1000 max-width-95" role="document">
+        <div class="modal-content">
+            <div class="modal-header header-green">
+                <h4 class="max-width-60 dis-inline-block">Room management</h4>
+                <button type="button" class="button-close-modal float-r" onclick="location.href='@Url.Action("Index", "Booking")'" data-dismiss="modal" aria-label="Close">
+                    <span>X</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    @Html.Partial("Components/_List_BookingRooms", Model.BookingRooms)
+                </div> 
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-dialog-window overflow-visible" id="modal-event-management" tabindex="-1" role="dialog" aria-labelledby="modal-add-roomLabel" aria-hidden="true">
+    <div class="modal-dialog modal-centered fixed-width-1200 max-width-95" role="document" style="overflow:visible !important;">
+        <div class="modal-content">
+            <div class="modal-header header-green">
+                <h4 class="max-width-60 dis-inline-block">Event management</h4>
+                <button type="button" class="button-close-modal float-r" data-dismiss="modal" onclick="location.href='@Url.Action("Index", "Booking")'" aria-label="Close">
+                    <span>X</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("Components/_List_BookingEvents", Model)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id='calendar'></div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var model_rooms = @Html.Raw(Json.Encode(Model.BookingRooms));
+
+        var model_events = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.BookingEvents));
+
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+            editable: true,
+            selectable: true,
+            aspectRatio: 1.8,
+            height: 'auto',
+            stickyHeaderDates: true,
+            scrollTime: '00:00',
+            headerToolbar: {
+                left: 'today prev,next',
+                center: 'title',
+                right: 'resourceTimelineDay,resourceTimelineThreeDays,resourceTimelineTenDay,resourceTimelineMonth,resourceTimelineYear'
+            },
+            initialView: 'resourceTimelineThreeDays',
+            views: {
+                resourceTimelineThreeDays: {
+                    type: 'resourceTimeline',
+                    duration: { days: 3 },
+                    buttonText: '3 days'
+                },
+                resourceTimelineTenDay: {
+                    type: 'resourceTimeline',
+                    duration: { days: 10 },
+                    buttonText: '10 days'
+                },
+            },
+            eventClick: function(info) {
+
+                var defaultDateFormat = "dd-mm-yyyy HH:MM";
+
+                $("#edit-event-id").val(info.event.id);
+                $(".btn-delete-event").attr("methodId",info.event.id);
+                $("#edit-event-title").val(info.event.title);
+                $("#edit-event-resourceId").val(info.event._def.resourceIds);
+                $("#datetimepicker_edit_start > input").val(dateFormat(new Date(info.event.start), defaultDateFormat));
+                $("#datetimepicker_edit_end > input").val(dateFormat(new Date(info.event.end), defaultDateFormat));
+
+                $("#modal-edit-event").modal('show');
+
+            },
+            dayClick: function(date, jsEvent, view, resource) {
+                console.log("clicked day");
+            },
+            select: function(info) {
+                var defaultDateFormat = "dd-mm-yyyy HH:MM";
+
+                console.log("selected sectiion "+info.startStr+" to "+info.endStr+" event id "+info.resource._resource.id );
+
+                $("#add-event-resourceId").val(info.resource._resource.id);
+                $("#datetimepicker_add_start > input").val(dateFormat(new Date(info.startStr), defaultDateFormat));
+                $("#datetimepicker_add_end > input").val(dateFormat(new Date(info.endStr), defaultDateFormat));
+
+                $("#modal-addNew-event").modal('show');
+            },
+            eventDrop: function(info) {
+
+                var defaultDateFormat = "dd-mm-yyyy HH:MM";
+
+                $("#edit-event-id").val(info.event.id);
+                $("#edit-event-title").val(info.event.title);
+                $("#edit-event-resourceId").val(info.event._def.resourceIds);
+                $("#datetimepicker_edit_start > input").val(dateFormat(new Date(info.event.startStr), defaultDateFormat));
+                $("#datetimepicker_edit_end > input").val(dateFormat(new Date(info.event.endStr), defaultDateFormat));
+
+                //$("#modal-edit-event").modal('show');
+
+                $(".modal-editEvent-submit-btn").click();
+
+            },
+            navLinks: true,
+            resourceAreaWidth: '20%',
+            resourceAreaHeaderContent: 'Resource',
+            resourceOrder:'title,id',
+            resources: model_rooms,
+            events:model_events
+
+        });
+
+        calendar.render();
+    });
+</script>
+
+
+<div class="modal fade modal-dialog-window overflow-visible" id="modal-edit-event" tabindex="-1" role="dialog" aria-labelledby="modal-edit-event" aria-hidden="true">
+    <div class="modal-dialog modal-centered fixed-width-750 max-width-90 overflow-visible" role="document">
+        <div class="modal-content overflow-visible">
+            <div class="modal-header header-green">
+                <h4 class="max-width-60 dis-inline-block">Edit event</h4>
+                <button type="button" class="button-close-modal float-r" data-dismiss="modal"  aria-label="Close">
+                    <span>X</span>
+                </button>
+            </div>
+            @using (Ajax.BeginForm("UpdateEvent", "Booking", FormMethod.Post, null))
+            {
+                <div class="modal-body overflow-visible">
+
+                    <input class="modal-input hidden-element" name="id" id="edit-event-id" type="text" value="" />
+
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> Title </label></div>
+                                <div class="@default_input_class"><input class="modal-input" name="title" id="edit-event-title" type="text" value="" /></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> Room ID </label></div>
+                                <div class="@default_input_class">
+                                    <select name="resourceId" id="edit-event-resourceId" style="width:95% !important; margin:auto; margin-left:7px;">
+                                        @foreach (var room in Model.BookingRooms)
+                                        {
+                                            <option value="@room.id">@room.title</option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-10">
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> Start date </label></div>
+                                <div class="@default_input_class">
+
+                                    <div class='input-group date' id='datetimepicker_edit_start'>
+                                        <input type='text' name="start" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> End date </label></div>
+                                <div class="@default_input_class">
+
+                                    <div class='input-group date' id='datetimepicker_edit_end'>
+                                        <input type='text' name="end" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer m-t-0 p-t-10 p-b-10">
+                    @*<button type="button" class="btn btn-secondary m-r-30" data-dismiss="modal">Close</button>*@
+                    <button type="submit" class="btn btn-success btn-close-modal modal-editEvent-submit-btn hidden-element">Submit changes</button>
+
+                    <input type="submit" class="btn btn-danger btn-delete-event btn-action-delete-ajax m-r-10" methodUrl="@Url.Action("DeleteEvent", "Booking")" methodId="-1" onclick="setTimeout(function(){location.href='@Url.Action("Index", "Booking")'},1000);" value="Delete" />
+                    <button type="submit" class="btn btn-success btn-close-modal " onclick="setTimeout(function(){location.href='@Url.Action("Index", "Booking")'},500);">Submit changes</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade modal-dialog-window overflow-visible" id="modal-addNew-event" tabindex="-1" role="dialog" aria-labelledby="modal-addNew-event" aria-hidden="true">
+    <div class="modal-dialog modal-centered fixed-width-750 max-width-90 overflow-visible" role="document">
+        <div class="modal-content overflow-visible">
+            <div class="modal-header header-green">
+                <h4 class="max-width-60 dis-inline-block">Add event</h4>
+                <button type="button" class="button-close-modal float-r" data-dismiss="modal" aria-label="Close">
+                    <span>X</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("AddEvent", "Booking", FormMethod.Post, null))
+            {
+                <div class="modal-body overflow-visible">
+
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> Title </label></div>
+                                <div class="@default_input_class"><input class="modal-input" name="title" id="add-event-title" type="text" value="" /></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> Room ID </label></div>
+                                <div class="@default_input_class">
+                                    <select name="resourceId" id="add-event-resourceId" style="width:95% !important; margin:auto; margin-left:7px;">
+                                        @foreach (var room in Model.BookingRooms)
+                                        {
+                                            <option value="@room.id">@room.title</option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-10">
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> Start date </label></div>
+                                <div class="@default_input_class">
+
+                                    <div class='input-group date' id='datetimepicker_add_start'>
+                                        <input type='text' name="start" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> End date </label></div>
+                                <div class="@default_input_class">
+
+                                    <div class='input-group date' id='datetimepicker_add_end'>
+                                        <input type='text' name="end" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer m-t-0 p-t-10 p-b-10">
+                    @*<button type="button" class="btn btn-secondary m-r-30" data-dismiss="modal">Close</button>*@
+                    <button type="submit" class="btn btn-success btn-close-modal">Submit changes</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+   $(function () {
+       $('#datetimepicker_edit_start').datetimepicker({
+           format:'DD-MM-YYYY HH:mm',
+       });
+   $('#datetimepicker_edit_end').datetimepicker({
+           format: 'DD-MM-YYYY HH:mm',
+           useCurrent: false //Important! See issue #1075
+   });
+});
+
+   $(function () {
+       $('#datetimepicker_add_start').datetimepicker({
+           format:'DD-MM-YYYY HH:mm',
+       });
+       $('#datetimepicker_add_end').datetimepicker({
+           format: 'DD-MM-YYYY HH:mm',
+           useCurrent: false //Important! See issue #1075
+       });
+       $("#datetimepicker_add_start").on("dp.change", function (e) {
+           $('#datetimepicker_add_end').data("DateTimePicker").minDate(e.date);
+       });
+       $("#datetimepicker_add_end").on("dp.change", function (e) {
+           $('#datetimepicker_add_start').data("DateTimePicker").maxDate(e.date);
+       });
+   });
+
+</script>
+
+<style>
+    .body-content {
+        max-width: 90% !important;
+        margin: auto;
+    }
+
+    #calendar {
+        max-width: 100%;
+        margin: 10px auto;
+    }
+
+    .fc .fc-scrollgrid-section-header.fc-scrollgrid-section-sticky > * {
+        top: 50px;
+    }
+    .fc-event-title-container
+    {
+        text-align:left !important;
+    }
+</style>
