@@ -1,0 +1,195 @@
+﻿@model AppointmentManager.Models.vm_Booking
+
+@{
+    ViewBag.Title = "Booking events ";
+    string default_label_class = "col-lg-3 col-sm-3 col-xs-3 text-center";
+    string default_input_class = "col-lg-9 col-sm-9 col-xs-9";
+}
+
+
+
+<input type="button" class="btn btn-success m-b-10 m-t-10" data-toggle="modal" data-target="#modal-add-event" value="Add event" />
+
+<div class="modal fade modal-dialog-window overflow-visible" id="modal-add-event" tabindex="-1" role="dialog" aria-labelledby="modal-add-roomLabel" aria-hidden="true">
+    <div class="modal-dialog modal-centered fixed-width-750 max-width-90 overflow-visible" role="document">
+        <div class="modal-content overflow-visible">
+            <div class="modal-header header-green">
+                <h4 class="max-width-60 dis-inline-block">Add new event</h4>
+                <button type="button" class="button-close-modal float-r" data-dismiss="modal" aria-label="Close">
+                    <span>X</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("AddEvent", "Booking", FormMethod.Post, null))
+            {
+                <div class="modal-body overflow-visible" >
+
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> Title </label></div>
+                                <div class="@default_input_class"><input class="modal-input" name="title" type="text" value="" /></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> Room ID </label></div>
+                                <div class="@default_input_class">
+                                    <select name="resourceId" id="resourceId" style="width:95% !important; margin:auto; margin-left:7px;">
+                                        @foreach (var room in Model.BookingRooms)
+                                        {
+                                            <option value="@room.id">@room.title</option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-10">
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> Start date </label></div>
+                                <div class="@default_input_class">
+
+                                    <div class='input-group date' id='datetimepicker_start'>
+                                        <input type='text' name="start" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row">
+                                <div class="@default_label_class"><label> End date </label></div>
+                                <div class="@default_input_class">
+
+                                    <div class='input-group date' id='datetimepicker_end'>
+                                        <input type='text' name="end" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer m-t-0 p-t-10 p-b-10">
+                    @*<button type="button" class="btn btn-secondary m-r-30" data-dismiss="modal">Close</button>*@
+                    <button type="submit" class="btn btn-success btn-close-modal">Submit changes</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="limiter">
+    <div class="container-responsiveTable">
+        <div class="wrap-responsiveTable">
+            <div class="responsiveTable">
+                <table class="sortable text-align-center responsiveTable">
+                    <thead>
+                        <tr class="responsiveTable-head">
+                            <th class="p-l-20 width-20">Title</th>
+                            <th class="width-15">Room</th>
+                            <th class="width-15">Start date</th>
+                            <th class="width-15">End date</th>
+
+                            <th class="width-20">Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var bookingEvent in Model.BookingEvents)
+                        {
+                            <tr>
+                                @using (Ajax.BeginForm("UpdateEvent", "Booking", FormMethod.Post, null))
+                                {
+                                    <td class="hidden">
+                                        <input type="text" class="hidden" readonly name="Id" value="@bookingEvent.id" />
+                                    </td>
+                                    <td class="">
+                                        <div class="before-element">Title</div>
+                                        <input type="text" class="table-input editable " readonly name="title" value="@bookingEvent.title" />
+                                    </td>
+                                    <td class="">
+                                        <div class="before-element">Room</div>
+                                        <input type="text" class="table-input editable " readonly name="resourceId" value="@bookingEvent.resourceId" />
+                                    </td>
+                                    <td class="">
+                                        <div class="before-element">Start date</div>
+                                        <input type="text" class="table-input editable " readonly name="start" value="@bookingEvent.start" />
+                                    </td>
+                                    <td class="">
+                                        <div class="before-element">End date</div>
+                                        <input type="text" class="table-input editable " readonly name="end" value="@bookingEvent.end" />
+                                    </td>
+
+                                    <td class="">
+                                        <div class="before-element">Operations</div>
+                                        <input type="button" class="btn btn-warning btn-action btn-action-edit" value="Edit" />
+                                        <input type="submit" class="btn btn-success btn-action btn-action-save hidden" value="Save changes" />
+                                        <input type="submit" class="btn btn-danger btn-action btn-action-delete m-l-5" methodUrl="@Url.Action("DeleteEvent", "Booking")" methodId="@bookingEvent.id" value="Delete" />
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row-exports">
+    <div class="col-lg-4 ">
+        <input type="button" class="btn btn-info m-t-10 float-l m-l-10" value="Export to CSV" onclick="location.href='@Url.Action("DownloadEventsCSV", "Booking")'" />
+        <input type="button" class="btn btn-warning m-t-10 float-l m-l-10" value="Export to Json" onclick="location.href='@Url.Action("DownloadEventsJSON", "Booking")'" />
+    </div>
+</div>
+
+
+<link href="~/Content/responsive-table.css" rel="stylesheet" />
+<script src="~/Scripts/responsive-table.js"></script>
+
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+
+
+<script type="text/javascript">
+   $(function () {
+       $('#datetimepicker_start').datetimepicker({
+           format:'DD-MM-YYYY HH:mm',
+       });
+   $('#datetimepicker_end').datetimepicker({
+           format: 'DD-MM-YYYY HH:mm',
+           useCurrent: false //Important! See issue #1075
+   });
+       $("#datetimepicker_start").on("dp.change", function (e) {
+           $('#datetimepicker_end').data("DateTimePicker").minDate(e.date);
+       });
+       $("#datetimepicker_end").on("dp.change", function (e) {
+           $('#datetimepicker_start').data("DateTimePicker").maxDate(e.date);
+       });
+   });
+</script>
+
+<style>
+    .bootstrap-datetimepicker-widget
+    {
+        overflow:visible !important;
+    }
+</style>

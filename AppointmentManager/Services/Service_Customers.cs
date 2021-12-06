@@ -11,7 +11,7 @@ namespace AppointmentManager
         {
             using (dbContext context = new dbContext())
             {
-                return context.Customers.Where(p=>p.isDeleted== false).ToList();
+                return context.Customers.Where(p=>p.isDeleted == false).ToList();
             }
         }
 

@@ -104,6 +104,15 @@ textarea {
   overflow-y:hidden;
 }
 
+.modal-topHalf
+{
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%) !important;
+  overflow-y:hidden;
+}
+
 .modal-input
 {
     background-color:#f6f6f6;
@@ -113,6 +122,10 @@ textarea {
     margin:auto;
     padding-left:5px;
     padding-right:5px;
+
+
+
+    
 }
 
 .dropdown-menu
@@ -131,3 +144,12 @@ textarea {
     overflow-x:hidden;
 }
 
+td.today:before
+{
+    display:none !important;
+}
+
+.overflow-visible
+{
+    overflow:visible !important;
+}
