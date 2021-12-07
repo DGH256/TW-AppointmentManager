@@ -6,8 +6,11 @@
 <h3> <p> Documentatia se poate gasi in folder-ul AppointmentManager/_Documentatie </p> </h3>
 <hr/>
 
-![GalbenuDorin_ET2_TW-1](https://user-images.githubusercontent.com/91731551/142015394-e340d500-83f0-48f2-b0c6-077cdd333238.jpg)
-![GalbenuDorin_ET2_TW-2](https://user-images.githubusercontent.com/91731551/142015401-7f225b14-7adb-4f04-902e-7b180dd2a138.jpg)
-![GalbenuDorin_ET2_TW-3](https://user-images.githubusercontent.com/91731551/142015402-854c9997-bef0-47c7-abb6-458f13d8df78.jpg)
-![GalbenuDorin_ET2_TW-4](https://user-images.githubusercontent.com/91731551/142015405-dff8ad69-53f6-492b-8f41-d2ae45e8414a.jpg)
-![GalbenuDorin_ET2_TW-5](https://user-images.githubusercontent.com/91731551/142015406-601c0d07-9ad9-41f1-8123-e2ddd02c0aa0.jpg)
+![GalbenuDorin_ET3_TW-1](https://user-images.githubusercontent.com/91731551/144980602-75003b15-cef2-47d1-9e53-7b88faf35693.jpg)
+![GalbenuDorin_ET3_TW-2](https://user-images.githubusercontent.com/91731551/144980608-4a837114-2933-4674-ab55-c1d04475fe24.jpg)
+![GalbenuDorin_ET3_TW-3](https://user-images.githubusercontent.com/91731551/144980610-844c58fd-94b9-406a-9981-1408bda89f12.jpg)
+![GalbenuDorin_ET3_TW-4](https://user-images.githubusercontent.com/91731551/144980611-2a713ab9-2341-4daa-b1ca-7b7553065e2b.jpg)
+![GalbenuDorin_ET3_TW-5](https://user-images.githubusercontent.com/91731551/144980615-80ecb4cd-b61a-44bf-b632-d0ea6e3b9cb7.jpg)
+![GalbenuDorin_ET3_TW-6](https://user-images.githubusercontent.com/91731551/144980617-b3232dfd-00ca-4532-b2f4-aed91919a26c.jpg)
+![GalbenuDorin_ET3_TW-7](https://user-images.githubusercontent.com/91731551/144980619-660b5d5b-3cbe-4553-9f85-6b54ae6b264e.jpg)
+![GalbenuDorin_ET3_TW-8](https://user-images.githubusercontent.com/91731551/144980620-fbbb463c-4d64-4b6b-805a-d57c1d505ae8.jpg)
