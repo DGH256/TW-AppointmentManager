@@ -9,7 +9,7 @@
 
 
 }
-<!-- test -->
+
 <link href="~/Content/fullcalendar-main.css" rel="stylesheet" />
 <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
 <script src="~/Scripts/fullcalendar/fullcalendar-main.js"></script>
@@ -59,7 +59,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 
-        var model_rooms = @Html.Raw(Json.Encode(Model.BookingRooms));
+        var model_rooms = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.BookingRooms));
 
         var model_events = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.BookingEvents));
 

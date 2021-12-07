@@ -22,7 +22,13 @@ namespace AppointmentManager
         public string title { get; set; }
 
         [EditableProperty]
-        public string resourceId { get; set; }
+        public string description { get; set; }
+
+        [EditableProperty]
+        public int? customerId { get; set; }
+
+        [EditableProperty]
+        public int resourceId { get; set; }
 
         [EditableProperty]
         [JsonConverter(typeof(DateTimeConverter_ISO))]
@@ -36,5 +42,14 @@ namespace AppointmentManager
         [JsonIgnore]
         [EditableProperty]
         public bool isDeleted { get; set; }
+
+
+        [ScriptIgnore]
+        [JsonIgnore]
+        public virtual Booking_Room Booking_Resource { get; set; }
+
+        [ScriptIgnore]
+        [JsonIgnore]
+        public virtual Customer Customer { get; set; }
     }
 }

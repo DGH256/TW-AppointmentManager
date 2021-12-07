@@ -244,6 +244,10 @@
     <Compile Include="Migrations\202112041506529_booking_rooms1.Designer.cs">
       <DependentUpon>202112041506529_booking_rooms1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112070607220_booking_db_relations.cs" />
+    <Compile Include="Migrations\202112070607220_booking_db_relations.Designer.cs">
+      <DependentUpon>202112070607220_booking_db_relations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DbContext\Appointment.cs" />
     <Compile Include="Models\DbContext\AspNetRole.cs" />
@@ -616,6 +620,7 @@
     <Content Include="Views\Booking\Events.cshtml" />
     <Content Include="Views\Shared\Components\_List_BookingRooms.cshtml" />
     <Content Include="Views\Shared\Components\_List_BookingEvents.cshtml" />
+    <Content Include="_Documentatie\GalbenuDorin_ET3_TW.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -664,6 +669,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112041506529_booking_rooms1.resx">
       <DependentUpon>202112041506529_booking_rooms1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112070607220_booking_db_relations.resx">
+      <DependentUpon>202112070607220_booking_db_relations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

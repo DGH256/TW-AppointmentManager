@@ -8,7 +8,6 @@ using System.Web.Mvc;
 namespace AppointmentManager.Controllers
 {
     [Authorize]
-    [UserAuthorization(AuthOptions.Permissions.ViewUsersPage)]
     public class UserManagementController : Controller
     {
         // GET: UserManagement
@@ -25,6 +24,7 @@ namespace AppointmentManager.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult UpdatePersonalSettings(AspNetUser settings)
         {     
             Service_Users.SetPersonalSettings(User, settings);
@@ -34,7 +34,7 @@ namespace AppointmentManager.Controllers
 
         [HttpPost]
         [Authorize]
-        //[UserAuthorization(AuthOptions.Roles.SuperAdmin)]
+        [UserAuthorization(AuthOptions.Roles.SuperAdmin)]
         public void UpdateUserSettings(AspNetUser newSettings)
         {
             var roles = Request.Params["roles"];

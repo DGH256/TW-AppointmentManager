@@ -48,6 +48,16 @@ namespace AppointmentManager
                 .HasMany(e => e.Appointments)
                 .WithRequired(e => e.Customer)
                 .HasForeignKey(e => e.Id_Customer);
+
+            modelBuilder.Entity<Booking_Room>()
+           .HasMany(e => e.Booking_Events)
+           .WithRequired(e => e.Booking_Resource)
+           .HasForeignKey(e => e.resourceId);
+
+            modelBuilder.Entity<Customer>()
+             .HasMany(e => e.Booking_Events)
+             .WithRequired(e => e.Customer)
+             .HasForeignKey(e => e.customerId);
         }
     }
 }

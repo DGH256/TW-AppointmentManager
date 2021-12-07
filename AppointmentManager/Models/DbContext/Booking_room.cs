@@ -26,5 +26,9 @@ namespace AppointmentManager
         [JsonIgnore]
         [EditableProperty]
         public bool isDeleted { get; set; }
+
+        [JsonIgnore]
+        [ScriptIgnore]
+        public virtual ICollection<Booking_Event> Booking_Events { get; set; }
     }
 }

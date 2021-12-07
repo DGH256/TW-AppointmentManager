@@ -34,6 +34,11 @@ namespace AppointmentManager
         public bool isDeleted { get; set; }
 
         [JsonIgnore]
+        [ScriptIgnore]
         public virtual ICollection<Appointment> Appointments { get; set; }
+
+        [JsonIgnore]
+        [ScriptIgnore]
+        public virtual ICollection<Booking_Event> Booking_Events { get; set; }
     }
 }
