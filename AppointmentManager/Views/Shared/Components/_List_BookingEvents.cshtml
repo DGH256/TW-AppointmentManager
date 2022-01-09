@@ -21,70 +21,85 @@
             </div>
             @using (Html.BeginForm("AddEvent", "Booking", FormMethod.Post, null))
             {
-                <div class="modal-body overflow-visible" >
+        <div class="modal-body overflow-visible">
 
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
                     <div class="row">
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="@default_label_class"><label> Title </label></div>
-                                <div class="@default_input_class"><input class="modal-input" name="title" type="text" value="" /></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="@default_label_class"><label> Room ID </label></div>
-                                <div class="@default_input_class">
-                                    <select name="resourceId" id="resourceId" style="width:95% !important; margin:auto; margin-left:7px;">
-                                        @foreach (var room in Model.BookingRooms)
-                                        {
-                                            <option value="@room.id">@room.title</option>
-                                        }
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="@default_label_class"><label> Title </label></div>
+                        <div class="@default_input_class"><input class="modal-input" name="title" type="text" value="" /></div>
                     </div>
-
-                    <div class="row m-t-10">
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="@default_label_class"><label> Start date </label></div>
-                                <div class="@default_input_class">
-
-                                    <div class='input-group date' id='datetimepicker_start'>
-                                        <input type='text' name="start" class="form-control" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="@default_label_class"><label> End date </label></div>
-                                <div class="@default_input_class">
-
-                                    <div class='input-group date' id='datetimepicker_end'>
-                                        <input type='text' name="end" class="form-control" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <div class="row">
+                        <div class="@default_label_class"><label> Room ID </label></div>
+                        <div class="@default_input_class">
+                            <select name="resourceId" id="resourceId" style="width:95% !important; margin:auto; margin-left:7px;">
+                                @foreach (var room in Model.BookingRooms)
+                                {
+                <option value="@room.id">@room.title</option>}
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-t-10">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="row">
+                        <div class="@default_label_class"><label> Start date </label></div>
+                        <div class="@default_input_class">
+
+                            <div class='input-group date' id='datetimepicker_start'>
+                                <input type='text' name="start" class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <div class="row">
+                        <div class="@default_label_class"><label> End date </label></div>
+                        <div class="@default_input_class">
+
+                            <div class='input-group date' id='datetimepicker_end'>
+                                <input type='text' name="end" class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-t-10">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="row">
+                        <div class="@default_label_class"><label> Customer ID </label></div>
+                        <div class="@default_input_class">
+                            <select name="customerId" id="resourceId" style="width:95% !important; margin:auto; margin-left:7px;">
+                                @foreach (var customer in Model.Customers)
+                                {
+                    <option value="@customer.Id">@customer.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
                 <div class="modal-footer m-t-0 p-t-10 p-b-10">
                     @*<button type="button" class="btn btn-secondary m-r-30" data-dismiss="modal">Close</button>*@
                     <button type="submit" class="btn btn-success btn-close-modal">Submit changes</button>
@@ -104,6 +119,7 @@
                         <tr class="responsiveTable-head">
                             <th class="p-l-20 width-20">Title</th>
                             <th class="width-15">Room</th>
+                            <th class="width-15">Customer Id</th>
                             <th class="width-15">Start date</th>
                             <th class="width-15">End date</th>
 
@@ -126,6 +142,10 @@
                                     <td class="">
                                         <div class="before-element">Room</div>
                                         <input type="text" class="table-input editable " readonly name="resourceId" value="@bookingEvent.resourceId" />
+                                    </td>
+                                      <td class="">
+                                        <div class="before-element">Customer Id</div>
+                                        <input type="text" class="table-input editable " readonly name="customerId" value="@bookingEvent.customerId" />
                                     </td>
                                     <td class="">
                                         <div class="before-element">Start date</div>

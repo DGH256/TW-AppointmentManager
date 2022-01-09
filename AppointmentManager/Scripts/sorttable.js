@@ -212,9 +212,10 @@ sorttable = {
             if (node.getAttribute("sorttable_customkey") != null) {
                 return node.getAttribute("sorttable_customkey");
             }
-            else if (node.getAttribute("value") != null) {  //added this custom 'if' statement that sorts by input's value 
+            else if (node.getAttribute("value") != null) {  //added this custom if statement that sorts by input's value 
                 var result = node.getAttribute("value").toLowerCase();
-                console.log(result);
+                //TEST function
+                //console.log(result);
                 return result;
             }
             else if (typeof node.textContent != 'undefined' && !hasInputs) {

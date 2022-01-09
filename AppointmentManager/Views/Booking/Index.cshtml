@@ -105,12 +105,12 @@
 
             },
             dayClick: function(date, jsEvent, view, resource) {
-                console.log("clicked day");
+                //console.log("clicked day");
             },
             select: function(info) {
                 var defaultDateFormat = "dd-mm-yyyy HH:MM";
 
-                console.log("selected sectiion "+info.startStr+" to "+info.endStr+" event id "+info.resource._resource.id );
+                //console.log("selected sectiion "+info.startStr+" to "+info.endStr+" event id "+info.resource._resource.id );
 
                 $("#add-event-resourceId").val(info.resource._resource.id);
                 $("#datetimepicker_add_start > input").val(dateFormat(new Date(info.startStr), defaultDateFormat));
@@ -248,70 +248,83 @@
             </div>
             @using (Html.BeginForm("AddEvent", "Booking", FormMethod.Post, null))
             {
-                <div class="modal-body overflow-visible">
+        <div class="modal-body overflow-visible">
 
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
                     <div class="row">
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="@default_label_class"><label> Title </label></div>
-                                <div class="@default_input_class"><input class="modal-input" name="title" id="add-event-title" type="text" value="" /></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="@default_label_class"><label> Room ID </label></div>
-                                <div class="@default_input_class">
-                                    <select name="resourceId" id="add-event-resourceId" style="width:95% !important; margin:auto; margin-left:7px;">
-                                        @foreach (var room in Model.BookingRooms)
-                                        {
-                                            <option value="@room.id">@room.title</option>
-                                        }
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="@default_label_class"><label> Title </label></div>
+                        <div class="@default_input_class"><input class="modal-input" name="title" id="add-event-title" type="text" value="" /></div>
                     </div>
-
-                    <div class="row m-t-10">
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="@default_label_class"><label> Start date </label></div>
-                                <div class="@default_input_class">
-
-                                    <div class='input-group date' id='datetimepicker_add_start'>
-                                        <input type='text' name="start" class="form-control" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="@default_label_class"><label> End date </label></div>
-                                <div class="@default_input_class">
-
-                                    <div class='input-group date' id='datetimepicker_add_end'>
-                                        <input type='text' name="end" class="form-control" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <div class="row">
+                        <div class="@default_label_class"><label> Room ID </label></div>
+                        <div class="@default_input_class">
+                            <select name="resourceId" id="add-event-resourceId" style="width:95% !important; margin:auto; margin-left:7px;">
+                                @foreach (var room in Model.BookingRooms)
+                                {
+                <option value="@room.id">@room.title</option>}
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-t-10">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="row">
+                        <div class="@default_label_class"><label> Start date </label></div>
+                        <div class="@default_input_class">
+
+                            <div class='input-group date' id='datetimepicker_add_start'>
+                                <input type='text' name="start" class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <div class="row">
+                        <div class="@default_label_class"><label> End date </label></div>
+                        <div class="@default_input_class">
+
+                            <div class='input-group date' id='datetimepicker_add_end'>
+                                <input type='text' name="end" class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-t-10">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="row">
+                        <div class="@default_label_class"><label> Customer ID </label></div>
+                        <div class="@default_input_class">
+                            <select name="customerId" id="resourceId" style="width:95% !important; margin:auto; margin-left:7px;">
+                                @foreach (var customer in Model.Customers)
+                                {
+                <option value="@customer.Id">@customer.Name</option>}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+        </div>
                 <div class="modal-footer m-t-0 p-t-10 p-b-10">
                     @*<button type="button" class="btn btn-secondary m-r-30" data-dismiss="modal">Close</button>*@
                     <button type="submit" class="btn btn-success btn-close-modal">Submit changes</button>

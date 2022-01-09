@@ -16,11 +16,13 @@ namespace AppointmentManager.Controllers
         {
             var rooms = Service_Bookings.GetRooms();
             var events = Service_Bookings.GetEvents();
+            var customers = Service_Customers.GetCustomers();
 
  
             vm_Booking model = new vm_Booking();
             model.BookingEvents = events;
             model.BookingRooms = rooms;
+            model.Customers = customers;
 
             return View(model);
         }

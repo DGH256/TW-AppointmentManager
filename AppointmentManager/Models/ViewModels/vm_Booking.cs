@@ -11,5 +11,7 @@ namespace AppointmentManager.Models
         public IEnumerable<Booking_Event> BookingEvents { get; set; }
 
         public IEnumerable<Booking_Room> BookingRooms { get; set; }
+
+        public IEnumerable<Customer> Customers { get; set; }
     }
 }

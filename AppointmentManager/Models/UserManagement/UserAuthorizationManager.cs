@@ -13,16 +13,35 @@ namespace AppointmentManager
     {
         public static SortedSet<UserRole> userRoles = new SortedSet<UserRole>();
 
-        public static SortedSet<AspNetRole> userDbRoles = new SortedSet<AspNetRole>();
+        private static List<AspNetRole> dbRoles = new List<AspNetRole>();
 
         public static HashSet<UserPermission> userPermissions = new HashSet<UserPermission>();
 
         public static int defaultIdLength = 40;
 
+        private static bool addedDbRoles = false;
+
         public static void AddRole(UserRole role)
         {
+            if(!addedDbRoles)
+            {
+                using (dbContext context = new dbContext())
+                {
+                    dbRoles = context.AspNetRoles.ToList();
+                }
+
+                addedDbRoles = true;
+            }
+
             if (!userRoles.Contains(role))
             {
+                var dbRole = dbRoles.Where(p => p.Name == role.Name).FirstOrDefault();
+
+                if(dbRole!=null)
+                {
+                    role.Id = dbRole.Id;
+                }
+
                 userRoles.Add(role);
             }
 
@@ -59,6 +78,8 @@ namespace AppointmentManager
                 using (dbContext context = new dbContext())
                 {
                     var dbuser = context.AspNetUsers.Where(p => p.UserName == user.Identity.Name).FirstOrDefault();
+
+                    if (dbuser == null) return null;
 
                     result = dbuser.Id;
 
